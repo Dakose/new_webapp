@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Delete Service{% endblock %}
+{% block content %}
+
+{% if user is authenticated %}
+<h1>Delete Service</h1>
+</br>
+<h3>Delete: {{ post.title }}</h3>
+</br>
+    <div class="mb-3">
+        <table>
+        <form method="POST">
+            {% csrf_token %}
+        </table>
+        <strong>Are you sure?!</strong></br></br>
+            <button class="btn btn-danger">Delete</button>
+    </div>
+{% else %}
+You are not sllowed here!
+{% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Edit Service{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<h1>Update Service</h1>
+    {% if user.id == post.author.id %}  
+    <div class="mb-3">
+        <table>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_table }}
+        </table>
+            <button class="btn btn-success">Update</button>
+    </div>
+    {% else %}
+    You are not authenticated
+    {% endif %}
+{% else %}
+You are not authenticated
+{% endif %}
+
+{% endblock %}

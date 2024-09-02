@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Post</h1>
+
+<ul>
+{% for post in object_list %}
+    <li><small><a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a></small></br>
+        <a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a> - {{ post.author.first_name }}
+    {{ post.author.last_name }} - {{ post.author.email }}</br>
+
+    {{ post.body|slice:":200"|safe}}
+</li>
+</br>
+    {{ post.post_date }}<br>
+   <small>{{ post.total_likes }}:Likes</small>
+</br>
+<hr>
+{% endfor %}
+</br>
+</ul>
+
+
+
+{% endblock %}

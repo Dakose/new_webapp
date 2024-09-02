@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if category_posts %}
+
+    <h1>{{ cats }}</h1>
+
+        {% for post in category_posts %}
+
+        {{ post.title }}</a> - {{ post.author.first_name }}
+        {{ post.author.last_name }} - {{ post.author.email }}</br>
+
+        {{ post.body|slice:":200"|safe}}
+    </li>
+    </br>
+        {{ post.post_date }}
+        {% if user.is_authenticated and user.pk == post.author.pk %}
+        |
+        <a href="{% url 'update_post' post.pk %}">(Edit post)</a>
+        <a href="{% url 'delete_post' post.pk %}">(Delete post)</a>
+        {% endif %}
+    </br>
+
+        {% endfor %}
+{% else %}
+    <h1>Sorry, this page does not exist!...</h1>
+{% endif %}
+
+{% endblock %}
