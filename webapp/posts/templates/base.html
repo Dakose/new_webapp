@@ -18,16 +18,15 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
               <!-- category menu -->
-              {% if cat_menu %}
+              {% if categories_menu %}
                 <li class="nav-item dropdown">
                   <a class="btn btn-success" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Categories
                   </a>
                   
                   <ul class="dropdown-menu">
-                    {% for item in cat_menu %}
+                    {% for item in categories_menu %}
                     <li><a class="dropdown-item" href="{% url 'category' item|slugify %}">{{ item }}</a></li>
-                  
                     {% endfor %}
                   </ul>
                 </li>
