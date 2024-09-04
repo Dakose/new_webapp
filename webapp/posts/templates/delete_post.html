@@ -2,7 +2,7 @@
 {% block title %}Delete Service{% endblock %}
 {% block content %}
 
-{% if user is authenticated %}
+{% if user.is_authenticated %}
 <h1>Delete Service</h1>
 </br>
 <h3>Delete: {{ post.title }}</h3>
