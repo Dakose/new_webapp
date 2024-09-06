@@ -24,10 +24,11 @@ class ServiceDetailView(DetailView):
     def get_context_data(self, *args, **kwargs):
         categories_menu = Category.objects.all()
         context = super(ServiceDetailView, self).get_context_data(*args, **kwargs)
-        stuff = get_object_or_404(Post, id=self.kwargs['pk'])
-        total_likes = stuff.total_likes()
+        # search post with pk
+        search_post = get_object_or_404(Post, id=self.kwargs['pk'])
+        total_likes = search_post.total_likes()
         liked = False
-        if stuff.likes.filter(id=self.request.user.id).exists():
+        if search_post.likes.filter(id=self.request.user.id).exists():
             liked = True
         context["categories_menu"] = categories_menu
         context["total_likes"] = total_likes

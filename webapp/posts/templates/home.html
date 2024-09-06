@@ -8,8 +8,7 @@
     <li><small><a href="{% url 'category' post.category|slugify %}">{{ post.category }}</a></small></br>
         <a href="{% url 'service-detail' post.pk %}">{{ post.title }}</a> - {{ post.author.first_name }}
     {{ post.author.last_name }} - {{ post.author.email }}</br>
-
-    {{ post.body|slice:":200"|safe}}
+    {{ post.snippet }}
 </li>
 </br>
     {{ post.post_date }}<br>

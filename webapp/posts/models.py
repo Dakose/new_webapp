@@ -14,13 +14,22 @@ class Category(models.Model):
         return reverse('home')
     
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    bio = models.TextField()
+
+    def __str__(self):
+        return str(self.user)
+
 class Post(models.Model):
     title = models.CharField(max_length=255)
+    title_image = models.ImageField(null=True, blank=True, upload_to="images/")
     title_tag = models.CharField(max_length=255, default="post")
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = RichTextField(blank=True, null=True)
     post_date = models.DateField(auto_now_add=True)
     category = models.CharField(max_length=255, default='Other')
+    snippet = models.CharField(max_length=255)
     likes = models.ManyToManyField(User, related_name='service_posts')
 
     def total_likes(self):
