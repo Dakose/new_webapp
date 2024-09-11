@@ -5,6 +5,42 @@
 <br>
 <h1>{{ post.title }}</h1>
 <small>{{ post.author.first_name }} {{ post.author.last_name }}
+    </br>
+
+    <!-- prifile card -->
+    <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-2">
+            {% if post.author.profile.profile_picture.url %}
+            <img src="{{ post.author.profile.profile_picture.url }}" class="img-fluid rounded-start" width="150" height="150">
+            {% endif %}
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ post.author.first_name }}
+                {{ post.author.last_name }}
+              </h5>
+              <p class="small text-body-secondary">
+
+                {% if post.author.profile.website_url %}
+                <a href="{{ post.author.profile.website_url }}">Website</a>  | 
+                {% endif %}
+
+                {% if post.author.profile.facebook_url %}
+                <a href="{{ post.author.profile.facebook_url }}">Facebook</a> | 
+                {% endif %}
+                {% if post.author.profile.instagram_url %}
+                <a href="{{ post.author.profile.instagram_url }}">Instagram</a>
+                {% endif %}
+              </p>
+              {% if post.author.profile.bio %}
+              <p class="card-text">{{ post.author.profile.bio }}</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
     
     {% if user.is_authenticated %}
         {% if user.id == post.author.id %}
@@ -19,7 +55,7 @@
 {{ post.category }}</br>
 
 {% if post.title_image %}
-    <img src="{{ post.title_image.url }}"></br>
+    <img class="rounded" src="{{ post.title_image.url }}" width="450" height="450"></br>
 {% endif %}
 
 {{ post.body|safe }}
