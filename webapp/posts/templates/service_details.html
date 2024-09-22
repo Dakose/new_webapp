@@ -13,9 +13,9 @@
         <div class="row g-0">
           <div class="col-md-2">
             {% if post.author.profile.profile_picture %}
-            <img src="{{ post.author.profile.profile_picture.url }}" class="img-fluid rounded-start" width="150" height="150">
+              <img src="{{ post.author.profile.profile_picture.url }}" class="img-fluid rounded-start" width="150" height="150">
             {% else %}
-            <img src="{% static 'webapp/images/default_image.png' %}" class="img-fluid rounded-start" width="150" height="150">
+              <img src="{% static 'webapp/images/default_image.png' %}" class="img-fluid rounded-start" width="150" height="150">
             {% endif %}
           </div>
           <div class="col-md-10">
@@ -25,17 +25,22 @@
                 {{ post.author.last_name }}
               </h5>
               <p class="small text-body-secondary">
+                {% if post.author.profile.id %}
+                <a href="{% url 'show_profile_page' post.author.profile.id %}">Profile Page</a>
+                {% endif %}
 
                 {% if post.author.profile.website_url %}
-                <a href="{{ post.author.profile.website_url }}">Website</a>  | 
+                <a href="{{ post.author.profile.website_url }}">  | Website</a>
                 {% endif %}
 
                 {% if post.author.profile.facebook_url %}
-                <a href="{{ post.author.profile.facebook_url }}">Facebook</a> | 
+                <a href="{{ post.author.profile.facebook_url }}">  | Facebook</a>
                 {% endif %}
+
                 {% if post.author.profile.instagram_url %}
-                <a href="{{ post.author.profile.instagram_url }}">Instagram</a>
+                <a href="{{ post.author.profile.instagram_url }}"> | Instagram</a>
                 {% endif %}
+                
               </p>
               {% if post.author.profile.bio %}
               <p class="card-text">{{ post.author.profile.bio }}</p>

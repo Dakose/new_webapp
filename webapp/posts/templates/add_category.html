@@ -2,7 +2,7 @@
 {% block title %}Add Category{% endblock %}
 {% block content %}
 
-{% if user.is_authenticated %}
+{% if user.is_authenticated and user.is_superuser %}
 
 <h1>Add category</h1>
     
